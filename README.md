@@ -60,7 +60,7 @@ stats.f_oneway(one, two)
 
 
 
-    F_onewayResult(statistic=16.878691082108578, pvalue=5.829850982667509e-05)
+    F_onewayResult(statistic=8.497777877169561, pvalue=0.003965451502896506)
 
 
 
@@ -76,7 +76,7 @@ t
 
 
 
-    Ttest_indResult(statistic=-4.108368420931669, pvalue=5.8298509826675854e-05)
+    Ttest_indResult(statistic=-2.9150948315911713, pvalue=0.00396545150289653)
 
 
 
@@ -232,7 +232,7 @@ print(stats.f_oneway(four,five,six))
 
     F_onewayResult(statistic=0.06693195000987277, pvalue=0.9353322377145488)
     F_onewayResult(statistic=11.760064743099003, pvalue=5.2985391195830756e-05)
-    F_onewayResult(statistic=3.194250788724835, pvalue=0.048432238619556506)
+    F_onewayResult(statistic=1.6316596490755426, pvalue=0.20460747368230073)
 
 
 ## 3. Calculating ANOVA 
@@ -328,7 +328,7 @@ df.head()
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>1</td>
       <td>2011-01-01</td>
       <td>1</td>
@@ -347,7 +347,7 @@ df.head()
       <td>985</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>2</td>
       <td>2011-01-02</td>
       <td>1</td>
@@ -366,7 +366,7 @@ df.head()
       <td>801</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>3</td>
       <td>2011-01-03</td>
       <td>1</td>
@@ -385,7 +385,7 @@ df.head()
       <td>1349</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>4</td>
       <td>2011-01-04</td>
       <td>1</td>
@@ -404,7 +404,7 @@ df.head()
       <td>1562</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>5</td>
       <td>2011-01-05</td>
       <td>1</td>
@@ -482,7 +482,7 @@ df.head()
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>1</td>
       <td>2011-01-01</td>
       <td>1</td>
@@ -502,7 +502,7 @@ df.head()
       <td>spring</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>2</td>
       <td>2011-01-02</td>
       <td>1</td>
@@ -522,7 +522,7 @@ df.head()
       <td>spring</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>3</td>
       <td>2011-01-03</td>
       <td>1</td>
@@ -542,7 +542,7 @@ df.head()
       <td>spring</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>4</td>
       <td>2011-01-04</td>
       <td>1</td>
@@ -562,7 +562,7 @@ df.head()
       <td>spring</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>5</td>
       <td>2011-01-05</td>
       <td>1</td>
@@ -597,7 +597,7 @@ df.boxplot('cnt', by='season_cat', figsize=(6,6))
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1a24ed2cc0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x1a19c7e588>
 
 
 
@@ -639,22 +639,9 @@ print(stats.ttest_ind(summer, winter))
 ```python
 # Round Robin: 
 
-import numpy as np
-
-mccalister = ['Adam', 'Amanda','Chum', 'Dann', 
- 'Jacob', 'Jason', 'Johnhoy', 'Karim', 
-'Leana','Luluva', 'Matt', 'Maximilian', ]
-
-np.random.choice(mccalister, 3)
-
+from src.student_caller import three_random_students
+from src.student_list import student_first_names
 ```
-
-
-
-
-    array(['Jacob', 'Maximilian', 'Chum'], dtype='<U10')
-
-
 
 
 ```python
