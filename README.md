@@ -31,6 +31,8 @@ $$ s^2 = \frac{\sum_{i=1}^{n_1} \left(x_i - \bar{x_1}\right)^2 + \sum_{j=1}^{n_2
 
 We can also say that t test is a special case of ANOVA in that we are comparing the means of only two groups.
 
+![img](img/choosing_test.png)
+
 
 #### ANOVA - the F test
 $F = \frac{MS_{bet}}{MS_{within}}$
@@ -220,7 +222,7 @@ print(stats.f_oneway(four,five,six))
 
 
 
-![png](index_files/index_20_1.png)
+![png](index_files/index_21_1.png)
 
 
 
@@ -605,7 +607,7 @@ df.boxplot('cnt', by='season_cat', figsize=(6,6))
 
 
 
-![png](index_files/index_31_1.png)
+![png](index_files/index_32_1.png)
 
 
 
@@ -792,7 +794,7 @@ df.boxplot('cnt', by = 'season_cat')
 
 
 
-![png](index_files/index_40_1.png)
+![png](index_files/index_41_1.png)
 
 
 
