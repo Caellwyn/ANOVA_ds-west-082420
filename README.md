@@ -14,7 +14,7 @@ Agenda today:
 
 Suppose we want to compare whether multiple groups differ in some type of measures. For example, we have collected mood data grouped by four types of weather - sunny, raining, overcast, or cloudy, and we want to find out whether there is a difference in mood across different weather. What tests would you use?
 
-A natural reaction would be to conduct multiple t-tests. However, that comes with many drawbacks. First, you would need $\frac{n(n-1)}{2}$ t tests, which come out to 6 tests. Having more tests meaning having higher chance of making type I error. In this case, our original probability of making type I error grew from 5% to 5% x 6 = 30%! By conducting 6 tests and comparing their mean to each other, we are running a huge risk of making false positives. This is known as the multiple comparison problem. How then, can we combat this? -- ANOVA!
+A natural reaction would be to conduct multiple t-tests. However, that comes with many drawbacks. First, you would need $\frac{n(n-1)}{2}$ t tests, which come out to 6 tests. Having more tests meaning having higher chance of making type I error. In this case, our original probability of making type I error grew from 5% to 5% x 6 = 30%! By conducting 6 tests and comparing their mean to each other, we are running a huge risk of making false positives. This is known as the **multiple comparison problem**. How then, can we combat this? -- ANOVA!
 
 Instead of looking at each individual difference, ANOVA examines the ratio of variance between groups, and variance within groups, to find out whether the ratio is big enough to be statistically significant. 
 
@@ -60,7 +60,7 @@ stats.f_oneway(one, two)
 
 
 
-    F_onewayResult(statistic=8.497777877169561, pvalue=0.003965451502896506)
+    F_onewayResult(statistic=13.156396517344971, pvalue=0.0003645248025749465)
 
 
 
@@ -76,7 +76,7 @@ t
 
 
 
-    Ttest_indResult(statistic=-2.9150948315911713, pvalue=0.00396545150289653)
+    Ttest_indResult(statistic=-2.251269131563817, pvalue=0.025467139215573472)
 
 
 
@@ -89,7 +89,7 @@ t.statistic**2
 
 
 
-    16.878691082108574
+    5.068212702732103
 
 
 
@@ -160,11 +160,11 @@ Now consider another distribution of the same three samples but with less variab
 
 
 ## Trios: 
-Take 2 minutes in groups of 3 to discuss which of these following trios would have high f-stats, and which would have low.
+Take 5 minutes in groups of 3 to discuss which of these following trios would have high f-stats, and which would have low.
 
 Plot them if, if that would help.
 
-Run the f_oneway funciton scypy.stats to check your conclusions
+Run the f_oneway function scypy.stats to check your conclusions
 
 
 ```python
@@ -232,12 +232,15 @@ print(stats.f_oneway(four,five,six))
 
     F_onewayResult(statistic=0.06693195000987277, pvalue=0.9353322377145488)
     F_onewayResult(statistic=11.760064743099003, pvalue=5.2985391195830756e-05)
-    F_onewayResult(statistic=1.6316596490755426, pvalue=0.20460747368230073)
+    F_onewayResult(statistic=3.194250788724835, pvalue=0.048432238619556506)
 
 
 ## 3. Calculating ANOVA 
 In this section, we will learn how to calculate ANOVA without using any packages. All we need to calculate is:
  
+
+<img src="attachment:Screen%20Shot%202019-06-03%20at%2010.36.09%20AM.png" width="400">
+
 $\bar{X} = $ Mean of Means = Mean of entire dataset
 
 
@@ -328,7 +331,7 @@ df.head()
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
+      <th>0</th>
       <td>1</td>
       <td>2011-01-01</td>
       <td>1</td>
@@ -347,7 +350,7 @@ df.head()
       <td>985</td>
     </tr>
     <tr>
-      <td>1</td>
+      <th>1</th>
       <td>2</td>
       <td>2011-01-02</td>
       <td>1</td>
@@ -366,7 +369,7 @@ df.head()
       <td>801</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>3</td>
       <td>2011-01-03</td>
       <td>1</td>
@@ -385,7 +388,7 @@ df.head()
       <td>1349</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>4</td>
       <td>2011-01-04</td>
       <td>1</td>
@@ -404,7 +407,7 @@ df.head()
       <td>1562</td>
     </tr>
     <tr>
-      <td>4</td>
+      <th>4</th>
       <td>5</td>
       <td>2011-01-05</td>
       <td>1</td>
@@ -482,7 +485,7 @@ df.head()
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
+      <th>0</th>
       <td>1</td>
       <td>2011-01-01</td>
       <td>1</td>
@@ -502,7 +505,7 @@ df.head()
       <td>spring</td>
     </tr>
     <tr>
-      <td>1</td>
+      <th>1</th>
       <td>2</td>
       <td>2011-01-02</td>
       <td>1</td>
@@ -522,7 +525,7 @@ df.head()
       <td>spring</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>3</td>
       <td>2011-01-03</td>
       <td>1</td>
@@ -542,7 +545,7 @@ df.head()
       <td>spring</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>4</td>
       <td>2011-01-04</td>
       <td>1</td>
@@ -562,7 +565,7 @@ df.head()
       <td>spring</td>
     </tr>
     <tr>
-      <td>4</td>
+      <th>4</th>
       <td>5</td>
       <td>2011-01-05</td>
       <td>1</td>
@@ -597,12 +600,12 @@ df.boxplot('cnt', by='season_cat', figsize=(6,6))
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1a19c7e588>
+    <matplotlib.axes._subplots.AxesSubplot at 0x1a1ba6bbe0>
 
 
 
 
-![png](index_files/index_29_1.png)
+![png](index_files/index_31_1.png)
 
 
 
@@ -619,25 +622,25 @@ winter = df[df.season_cat == 'winter'].cnt
 # We could run independent t-tests for each combination
 # But that increases the chance of making a type I (False Positive) error
 # Also, as your groups increase, the number of tests may become infeasable
-print(stats.ttest_ind(spring, fall))
-print(stats.ttest_ind(spring, summer))
-print(stats.ttest_ind(spring, winter ))
-print(stats.ttest_ind(fall, summer))
-print(stats.ttest_ind(fall, winter))
-print(stats.ttest_ind(summer, winter))
+print(stats.ttest_ind(spring, fall, equal_var=False))
+print(stats.ttest_ind(spring, summer, equal_var=False))
+print(stats.ttest_ind(spring, winter, equal_var=False ))
+print(stats.ttest_ind(fall, summer, equal_var=False))
+print(stats.ttest_ind(fall, winter, equal_var=False))
+print(stats.ttest_ind(summer, winter, equal_var=True))
 ```
 
-    Ttest_indResult(statistic=-20.40505135948835, pvalue=2.134072968524431e-62)
-    Ttest_indResult(statistic=-14.65873026929708, pvalue=1.5284822271363832e-38)
-    Ttest_indResult(statistic=-12.933694332032188, pvalue=1.2022067175230552e-31)
-    Ttest_indResult(statistic=3.9765418611661243, pvalue=8.411509811510022e-05)
-    Ttest_indResult(statistic=5.541003097872063, pvalue=5.7789091515026665e-08)
+    Ttest_indResult(statistic=-20.421299365101394, pvalue=1.8275113489162628e-62)
+    Ttest_indResult(statistic=-14.681643583173908, pvalue=2.062553301642287e-38)
+    Ttest_indResult(statistic=-12.912947328222721, pvalue=2.3900124937362424e-31)
+    Ttest_indResult(statistic=3.970165339037975, pvalue=8.675073518101597e-05)
+    Ttest_indResult(statistic=5.518135906502346, pvalue=6.686180171635208e-08)
     Ttest_indResult(statistic=1.480020595990678, pvalue=0.13974231789501412)
 
 
 
 ```python
-# Round Robin: 
+# Round Robin: Three students help me to code each part
 
 from src.student_caller import three_random_students
 from src.student_list import student_first_names
@@ -647,35 +650,42 @@ from src.student_list import student_first_names
 ```python
 # PSEUDO CODE EXERCISE
 
-1. # Calculate the mean of means.
+ # 1. Calculate the mean of means.
 
-2. # define a variable (with an appropriate name) which contains the total variability of the dataset, 
+# 2. define a variable (with an appropriate name) which contains the total variability of the dataset, 
 # or in other words the total deviation from the mean
 
-3. # define a variable that contains the variability of the dataset which is results from the difference of means.
 
-4. # define a variable that contains the variablity of the dataset which results from the variance of each sample
+ # 3. define a variable that contains the variability of the dataset which results from the difference of means.
 
-5. # Sanity Check: make sure all of the variability of the dataset is accounted for by the two last answers.
+    
+ # 4. define a variable that contains the variablity of the dataset which results from the variance of each sample
 
-6. # Define variables that contain the values of the two important degrees of freedom.
+ # 5. Sanity Check: make sure all of the variability of the dataset is accounted for by the two last answers.
 
-7. # Define a variable which holds a value which represents the variance of weighted individual group means.
+ # 6. Define variables that contain the values of the two important degrees of freedom.
 
-8. # Define a variable which holds a value which represents the variance of the weighted individual group variances.
+ # 7. Define a variable which holds a value which represents the variance of weighted individual group means.
 
-9. # Define and properly name a variable whose contents, if close to 1, represents a dataset whose 
+ # 8. Define a variable which holds a value which represents the variance of the weighted individual group variances.
+
+ # 9. Define and properly name a variable whose contents, if close to 1, represents a dataset whose 
 # larger group variances drown the distinguishing qualities of differences in means.
 
-10. # Ensure that the prior calculation matches the output below:
+# 10.  Ensure that the prior calculation matches the output below:
 
 ```
 
 
+```python
+# Compare with the anova table from Statsmodels
+anova_table = sm.stats.anova_lm(anova_season, type=2)
+print(anova_table)
+```
 
-
-    10.0
-
+                   df        sum_sq       mean_sq           F        PR(>F)
+    season_cat    3.0  9.505959e+08  3.168653e+08  128.769622  6.720391e-67
+    Residual    727.0  1.788940e+09  2.460715e+06         NaN           NaN
 
 
 ## Perform an ANOVA with scipy
@@ -718,12 +728,15 @@ ssb = sum(
              - np.mean(df[df.season_cat == season].cnt))**2 
              for season in df.season_cat.unique()
             ])
+
 4. # define a variable that contains the variablity of the dataset which results from the variance of each sample
 ssw = sum(
             [(len(df[df.season_cat == season])-1)
              * np.var(df[df.season_cat == season].cnt, ddof=1)
              for season in df.season_cat.unique()
             ])
+
+print(ssw)
 
 5. # Sanity Check: make sure all of the variability of the dataset is accounted for by the two last answers.
 print(round(ss, 3) == round((ssb + ssw), 3))
@@ -753,6 +766,7 @@ round(f.statistic, 3) == round(f_stat, 3)
 
 ```
 
+    1788939523.5882196
     True
 
 
@@ -763,22 +777,22 @@ round(f.statistic, 3) == round(f_stat, 3)
 
 
 
-## 4. Calculate ANOVA using statsmodel
+## 4. First Glimpse of Statsmodels OLS Method
 
 
 ```python
-data.boxplot('cnt', by = 'season_cat')
+df.boxplot('cnt', by = 'season_cat')
 ```
 
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1a269bc940>
+    <matplotlib.axes._subplots.AxesSubplot at 0x1a1ba8bbe0>
 
 
 
 
-![png](index_files/index_37_1.png)
+![png](index_files/index_40_1.png)
 
 
 
@@ -786,23 +800,76 @@ data.boxplot('cnt', by = 'season_cat')
 from statsmodels.formula.api import ols
 import statsmodels.api as sm
 # why can we use ols in this case?
-anova_season = ols('cnt~season_cat',data=data).fit()
-# anova_season.summary()
+anova_season = ols('cnt~season_cat',data=df).fit()
+anova_season.summary()
 ```
 
 
-```python
-# examine the anova table 
-anova_table = sm.stats.anova_lm(anova_season, type=2)
-print(anova_table)
-```
-
-                   df        sum_sq       mean_sq           F        PR(>F)
-    season_cat    3.0  9.505959e+08  3.168653e+08  128.769622  6.720391e-67
-    Residual    727.0  1.788940e+09  2.460715e+06         NaN           NaN
 
 
-<img src="attachment:Screen%20Shot%202019-06-03%20at%2010.36.09%20AM.png" width="400">
+<table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>           <td>cnt</td>       <th>  R-squared:         </th> <td>   0.347</td> 
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.344</td> 
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   128.8</td> 
+</tr>
+<tr>
+  <th>Date:</th>             <td>Mon, 21 Sep 2020</td> <th>  Prob (F-statistic):</th> <td>6.72e-67</td> 
+</tr>
+<tr>
+  <th>Time:</th>                 <td>08:17:48</td>     <th>  Log-Likelihood:    </th> <td> -6413.9</td> 
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   731</td>      <th>  AIC:               </th> <td>1.284e+04</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   727</td>      <th>  BIC:               </th> <td>1.285e+04</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     3</td>      <th>                     </th>     <td> </td>    
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>    
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+            <td></td>              <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>            <td> 5644.3032</td> <td>  114.407</td> <td>   49.335</td> <td> 0.000</td> <td> 5419.696</td> <td> 5868.910</td>
+</tr>
+<tr>
+  <th>season_cat[T.spring]</th> <td>-3040.1706</td> <td>  163.352</td> <td>  -18.611</td> <td> 0.000</td> <td>-3360.869</td> <td>-2719.472</td>
+</tr>
+<tr>
+  <th>season_cat[T.summer]</th> <td> -651.9717</td> <td>  162.673</td> <td>   -4.008</td> <td> 0.000</td> <td> -971.336</td> <td> -332.608</td>
+</tr>
+<tr>
+  <th>season_cat[T.winter]</th> <td> -916.1403</td> <td>  164.052</td> <td>   -5.584</td> <td> 0.000</td> <td>-1238.213</td> <td> -594.068</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td> 3.050</td> <th>  Durbin-Watson:     </th> <td>   0.469</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.218</td> <th>  Jarque-Bera (JB):  </th> <td>   2.765</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.080</td> <th>  Prob(JB):          </th> <td>   0.251</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 2.745</td> <th>  Cond. No.          </th> <td>    4.73</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+
 
 ## Next steps
 Just because we have rejected the null hypothesis, it doesn't mean we have conclusively showed which group is significantly different from which - remember, the alternative hypothesis is "the null is not true". 
