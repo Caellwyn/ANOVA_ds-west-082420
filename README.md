@@ -46,6 +46,8 @@ Degrees of freedom of an F-test originate from:
   - the degrees of freedom from the denominator of the f-stat (DF within) 
 (more below)
 
+http://vassarstats.net/textbook/
+
 
 ```python
 import numpy as np
@@ -546,7 +548,7 @@ df.boxplot('cnt', by='season_cat', figsize=(6,6))
 
 
 
-![png](index_files/index_30_1.png)
+![png](index_files/index_31_1.png)
 
 
 
@@ -663,7 +665,7 @@ df.boxplot('cnt', by = 'season_cat')
 
 
 
-![png](index_files/index_38_1.png)
+![png](index_files/index_39_1.png)
 
 
 
