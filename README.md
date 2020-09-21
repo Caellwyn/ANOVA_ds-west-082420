@@ -14,7 +14,7 @@ Agenda today:
 
 Suppose we want to compare whether multiple groups differ in some type of measures. For example, we have collected mood data grouped by four types of weather - sunny, raining, overcast, or cloudy, and we want to find out whether there is a difference in mood across different weather. What tests would you use?
 
-A natural reaction would be to conduct multiple t-tests. However, that comes with many drawbacks. First, you would need $\frac{n(n-1)}{2}$ t tests, which come out to 6 tests. Having more tests meaning having higher chance of making type I error. In this case, our original probability of making type I error grew from 5% to 5% x 6 = 30%! By conducting 6 tests and comparing their mean to each other, we are running a huge risk of making false positives. This is known as the multiple comparison problem. How then, can we combat this? -- ANOVA!
+A natural reaction would be to conduct multiple t-tests. However, that comes with many drawbacks. First, you would need $\frac{n(n-1)}{2}$ t tests, which come out to 6 tests. Having more tests meaning having higher chance of making type I error. In this case, our original probability of making type I error grew from 5% to 5% x 6 = 30%! By conducting 6 tests and comparing their mean to each other, we are running a huge risk of making false positives. This is known as the **multiple comparison problem**. How then, can we combat this? -- ANOVA!
 
 Instead of looking at each individual difference, ANOVA examines the ratio of variance between groups, and variance within groups, to find out whether the ratio is big enough to be statistically significant. 
 
@@ -110,11 +110,11 @@ Now consider another distribution of the same three samples but with less variab
 
 
 ## Trios: 
-Take 2 minutes in groups of 3 to discuss which of these following trios would have high f-stats, and which would have low.
+Take 5 minutes in groups of 3 to discuss which of these following trios would have high f-stats, and which would have low.
 
 Plot them if, if that would help.
 
-Run the f_oneway funciton scypy.stats to check your conclusions
+Run the f_oneway function scypy.stats to check your conclusions
 
 
 ```python
@@ -153,6 +153,9 @@ print(stats.f_oneway(four,five,six))
 ## 3. Calculating ANOVA 
 In this section, we will learn how to calculate ANOVA without using any packages. All we need to calculate is:
  
+
+<img src="attachment:Screen%20Shot%202019-06-03%20at%2010.36.09%20AM.png" width="400">
+
 $\bar{X} = $ Mean of Means = Mean of entire dataset
 
 
@@ -214,12 +217,15 @@ ssb = sum(
              - np.mean(df[df.season_cat == season].cnt))**2 
              for season in df.season_cat.unique()
             ])
+
 4. # define a variable that contains the variablity of the dataset which results from the variance of each sample
 ssw = sum(
             [(len(df[df.season_cat == season])-1)
              * np.var(df[df.season_cat == season].cnt, ddof=1)
              for season in df.season_cat.unique()
             ])
+
+print(ssw)
 
 5. # Sanity Check: make sure all of the variability of the dataset is accounted for by the two last answers.
 print(round(ss, 3) == round((ssb + ssw), 3))
@@ -249,6 +255,7 @@ round(f.statistic, 3) == round(f_stat, 3)
 
 ```
 
+    1788939523.5882196
     True
 
 
@@ -259,9 +266,7 @@ round(f.statistic, 3) == round(f_stat, 3)
 
 
 
-## 4. Calculate ANOVA using statsmodel
-
-<img src="attachment:Screen%20Shot%202019-06-03%20at%2010.36.09%20AM.png" width="400">
+## 4. First Glimpse of Statsmodels OLS Method
 
 ## Next steps
 Just because we have rejected the null hypothesis, it doesn't mean we have conclusively showed which group is significantly different from which - remember, the alternative hypothesis is "the null is not true". 
