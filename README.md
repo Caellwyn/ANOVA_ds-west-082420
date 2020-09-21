@@ -46,6 +46,8 @@ Degrees of freedom of an F-test originate from:
   - the degrees of freedom from the denominator of the f-stat (DF within) 
 (more below)
 
+http://vassarstats.net/textbook/
+
 # Discussion:
 
 ## Which test would you run for each these scenarios:
@@ -149,7 +151,7 @@ print(stats.f_oneway(four,five,six))
 
 
 
-![png](index_files/index_16_1.png)
+![png](index_files/index_17_1.png)
 
 
 ## 3. Calculating ANOVA 
